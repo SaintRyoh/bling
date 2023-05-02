@@ -103,7 +103,21 @@ local function draw_widget(
                 shape_border_width = client_border_width,
                 shape = helpers.shape.rrect(client_radius),
                 widget = wibox.container.background,
+                id = "bg",
             })
+
+            local mybg = client_box:get_children_by_id("bg")[1]
+            c:connect_signal('request::activate', function(client, context)
+                if context == "mouse_enter" then
+                    mybg.shape_border_color = "#00ff00"
+                end
+            end)
+
+            c:connect_signal('request::activate', function(client, context)
+                if context == "mouse_leave" then
+                    mybg.shape_border_color = client_border_color
+                end
+            end)
 
             client_box.point = {
                 x = math.floor((c.x - geo.x) * scale),
