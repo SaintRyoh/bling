@@ -14,6 +14,9 @@ local _color = {}
 -- @string color The color with hexadecimal HTML format `"#RRGGBB"`.
 -- @treturn bool `true` if the color is dark, `false` if it is light.
 function _color.is_dark(color)
+    if type(color) ~= "string" then
+        return false
+    end
     -- Try to determine if the color is dark or light
     local numeric_value = 0
     for s in color:gmatch("[a-fA-F0-9][a-fA-F0-9]") do
@@ -36,6 +39,9 @@ end
 -- @int[opt=26] amount How much light from 0 to 255. Default is around 10%.
 -- @treturn string The lighter color
 function _color.lighten(color, amount)
+    if type(color) ~= "string" then
+        return false
+    end
     amount = amount or 26
     local c = {
         r = tonumber("0x" .. color:sub(2, 3)),
