@@ -109,7 +109,7 @@ local function draw_widget(
             local mybg = client_box:get_children_by_id("bg")[1]
             c:connect_signal('request::activate', function(client, context)
                 if context == "mouse_enter" then
-                    mybg.shape_border_color = "#00ff00"
+                    mybg.shape_border_color = beautiful.bg_focus
                 end
             end)
 
